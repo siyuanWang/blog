@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="user">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/DataTables/media/css/jquery.dataTables.css">
+</head>
+<body>
+    <h4 style="text-align: center">用户列表</h4>
+    <div ng-controller="UserController">
+        <span></span>
+        <table change-table>
+            <thead>
+                <tr>
+                    <th>主键</th>
+                    <th>用户名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>电话号码</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="value in users">
+                    <td>{{value._id}}</td>
+                    <td>{{value.username}}</td>
+                    <td>{{value.age}}</td>
+                    <td>{{value.sex}}</td>
+                    <td>{{value.phone}}</td>
+                    <td>{{value.create_time}}</td>
+                    <td>{{value.update_time}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-controller="timeController">
+        Date format: <input ng-model="format"> <hr/>
+        Current time is: <span my-current-time="format"></span>
+    </div>
+
+    <div ng-controller="test">
+        <p my-customer1></p>
+        <p my-customer2 type="name"></p>
+        <p my-customer2 type="address"></p>
+        <my-customer3></my-customer3>
+    </div>
+
+    <div ng-controller="test1">
+        <my-customer4 info="naomi"></my-customer4>
+        <hr>
+        <my-customer4 info="igor"></my-customer4>
+    </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="scripts/controllers/user/app.js"></script>
+<script src="scripts/controllers/user/test1.js"></script>
+</html>
