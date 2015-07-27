@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="article">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css" rel="stylesheet">
+        html,body {
+            margin:0px;
+            padding:0px;
+            font-family: '微软雅黑';
+        }
+        .nav {
+            height: 90px;
+            color:#1DAFEC;
+            padding: 18px 0;
+        }
+        .top {
+            background: #1DAFEC;
+            height: 145px;
+            background-repeat: repeat-x;
+        }
+        .link {
+            float:right;
+        }
+
+        .link a {
+            margin-right: 30px;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            line-height: 30px;
+            padding: 15px 0px 3px 0px;
+            vertical-align: baseline;
+            display: inline-block;
+        }
+
+        .logo {
+            background-image: url('/images/home-logo.png');
+            background-repeat: no-repeat;
+            width: 96px;
+            height: 36px;
+            background-size: 96px 30px;
+            background-position-y: 6px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="">
+            <div class="top"></div>
+        </a>
+        <div class="nav">
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="col-md-4">
+                        <div class="logo"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="link">
+                            <a href="#">about me</a>
+                            <a href="#">all articles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </header>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ng-controller="ArticleController">
+                    <article ng-repeat="value in articles">
+                        <header>
+                            <h1 style="text-align: center;cursor: pointer">{{value.title}}</h1>
+                            <div>
+                                <span style="text-align: center;display:inline-block;width: 100%;">{{value.create_time}}</span>
+                            </div>
+                        </header>
+                        <div style="margin-top: 10px;">
+                            <div ng-bind-html="value.content|to_trusted">
+                            </div>
+                        </div>
+                        <footer style="margin-top: 30px;">
+                            <a href="#" style="font-weight: 600;font-size: 18px;">Read Me</a>
+                            <hr/>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/scripts/controllers/article/app.js"></script>
+</html>
