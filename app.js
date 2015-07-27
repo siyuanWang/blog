@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 
 var routes = require('./server/controller/index');
 var users = require('./server/controller/users');
+var articleController = require('./server/controller/ArticleController');
 
 var app = express();
 app.set('views', path.join(__dirname, 'app'));
@@ -16,13 +17,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/bower_components",express.static(path.join(__dirname, 'app/bower_components')));//node 加载静态文件配置
-app.use("/styles",express.static(path.join(__dirname, 'app/styles')));//node 加载静态文件配置
-app.use("/scripts",express.static(path.join(__dirname, 'app/scripts')));//node 加载静态文件配置
-app.use("/images",express.static(path.join(__dirname, 'app/scripts')));//node 加载静态文件配置
+app.use("/bower_components",express.static(path.join(__dirname, 'app/bower_components')));
+app.use("/styles",express.static(path.join(__dirname, 'app/styles')));
+app.use("/scripts",express.static(path.join(__dirname, 'app/scripts')));
+app.use("/images",express.static(path.join(__dirname, 'app/scripts')));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use('/', routes);
 app.use('/users', users);
+app.use('/article', articleController);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

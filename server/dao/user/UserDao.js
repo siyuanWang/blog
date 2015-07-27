@@ -5,7 +5,7 @@ var db = require("../util/dbUtil");
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
-    username        : {type : String, default : 'ÄäÃûÓÃ»§'},
+    username        : {type : String, default : 'ç”¨æˆ·å'},
     password        : {type : String},
     sex             : {type : Number},
     create_time     : {type : Date, default: Date.now()},
