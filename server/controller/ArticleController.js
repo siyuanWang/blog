@@ -13,6 +13,10 @@ router.get('/page/list', function(req, res) {
   res.render('views/article/list', { title: 'Express' });
 });
 
+router.get('/page/add', function(req, res) {
+  res.render('views/article/add');
+});
+
 router.post('/', function(req, res) {
   articleDao.save({
     content:'<div>article content</div>',
