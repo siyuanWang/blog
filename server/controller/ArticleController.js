@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/page/list', function(req, res) {
-  res.render('views/article/list', { title: 'Express' });
+  res.render('views/article/list');
 });
 
 router.get('/page/add', function(req, res) {

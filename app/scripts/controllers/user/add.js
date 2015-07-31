@@ -3,10 +3,9 @@ app.controller('addArticleFormController', function($scope, $http) {
 
     $scope.submit = function() {
         if($scope.userForm.$valid) {
-            alert("submit successfull.");
-            $http.post('/users', $scope.fields)
+            $http.post('/user', $scope.fields)
                 .success(function(data, status, headers, config) {
-                    alert('save success.')
+                    alert(data);
                 })
                 .error(function(data, status, headers, config) {
                     alert(data);

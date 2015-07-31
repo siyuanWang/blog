@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
     username        : {type : String, default : '用户名'},
     password        : {type : String},
+    email           : {type : String},
     sex             : {type : Number},
     create_time     : {type : Date, default: Date.now()},
     update_time     : {type : Date, default: Date.now()},
@@ -14,14 +15,22 @@ var userSchema = new mongoose.Schema({
     age             : {type : Number}
 });
 
-var saveUser = function(document) {
+var saveUser = function(document, callback) {
     var userModel = db.model('blog_user', userSchema);
     var userEntity = new userModel(document);
     userEntity.save(function(error) {
         if(error) {
             console.log(error);
+            callback({
+                operate: false,
+                msg: error
+            })
         } else {
             console.log('saved OK!');
+            callback({
+                operate: true,
+                msg: "操作成功"
+            })
         }
     });
 };

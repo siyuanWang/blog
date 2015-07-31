@@ -4,9 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
-
-var routes = require('./server/controller/index');
-var users = require('./server/controller/users');
+var userController = require('./server/controller/UserController');
 var articleController = require('./server/controller/ArticleController');
 
 var app = express();
@@ -22,8 +20,7 @@ app.use("/styles",express.static(path.join(__dirname, 'app/styles')));
 app.use("/scripts",express.static(path.join(__dirname, 'app/scripts')));
 app.use("/images",express.static(path.join(__dirname, 'app/images')));
 app.use(favicon(__dirname + '/favicon.ico'));
-app.use('/', routes);
-app.use('/users', users);
+app.use('/user', userController);
 app.use('/article', articleController);
 
 app.use(function(req, res, next) {
