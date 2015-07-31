@@ -35,15 +35,24 @@ var saveUser = function(document, callback) {
     });
 };
 
-var query = function(callback) {
+var query = function(params, columns, callback) {
     var userModel = db.model('blog_user', userSchema);
-    userModel.find({}, {}, function(error, result) {
+    var query = userModel.find(params).select(columns);
+    query.exec(function(error, result) {
         if(error) {
             console.log(error);
+            callback({
+                operate: false,
+                msg: error
+            })
         } else {
-            callback(result);
+            console.log(result)
+            callback({
+                operate: true,
+                data: result
+            });
         }
-    })
+    });
 };
 
 module.exports.saveUser = saveUser;

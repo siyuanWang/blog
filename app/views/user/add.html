@@ -20,7 +20,7 @@
 
                     <div class="form-group" ng-class="{'has-error': userForm.username.$invalid && (userForm.username.$dirty || userForm.$submitted)}">
                         <label for="username">用户名</label>
-                        <input type="text" class="form-control" id="username" name="username" ng-model="fields.username" placeholder="必填" required/>
+                        <input type="text" class="form-control" id="username" name="username" ng-model="fields.username" placeholder="必填" required check-user-name/>
                         <p ng-show="userForm.username.$invalid && (userForm.username.$dirty || userForm.$submitted)" class="help-block">You name is required.</p>
                     </div>
 

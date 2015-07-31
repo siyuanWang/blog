@@ -76,3 +76,26 @@ app.directive('password', function() {
         }
     }
 });
+
+app.directive('checkUserName', ['$http', function($http) {
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            elem.bind('blur', function(e) {
+                var username = e.target.value;
+                $http.get('/user/checkusername', {params: {username: username}})
+                    .success(function(data, status, headers, config) {
+                        console.log(data)
+                        if(data.username == username) {
+                            console.log('username exist!')
+                        } else {
+                            console.log('username can use.')
+                        }
+                    })
+                    .error(function(data, status, headers, config) {
+                        console.log(data);
+                    });
+            });
+        }
+    }
+}]);
