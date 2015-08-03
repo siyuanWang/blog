@@ -32,26 +32,21 @@ app.controller('addArticleFormController', function($scope, $http) {
 
 app.directive('equals', function() {
     return {
-        restrict: 'A', // only activate on element attribute
-        require: 'ngModel', // get a hold of NgModelController
+        restrict: 'A',
+        require: 'ngModel',
         link: function(scope, elem, attrs, ngModel) {
-            if(!ngModel) return; // do nothing if no ng-model
-            // watch own value and re-validate on change
+            if(!ngModel) return;
             scope.$watch(attrs.ngModel, function() {
                 validate();
             });
-
-            // observe the other value and re-validate on change
             attrs.$observe('equals', function (val) {
                 validate();
             });
 
             var validate = function() {
-                // values
                 var val1 = ngModel.$viewValue;
                 var val2 = attrs.equals;
 
-                // set validity
                 ngModel.$setValidity('equals', ! val1 || ! val2 || val1 === val2);
             };
         }
@@ -80,22 +75,24 @@ app.directive('password', function() {
 app.directive('checkUserName', ['$http', function($http) {
     return {
         restrict: 'A',
-        link: function(scope, elem, attrs) {
-            elem.bind('blur', function(e) {
-                var username = e.target.value;
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ngModel) {
+            console.log(ngModel)
+            ngModel.$validators.checkUserName = function(modelValue, username) {
+                if(ngModel.$isEmpty(modelValue))return true;
                 $http.get('/user/checkusername', {params: {username: username}})
-                    .success(function(data, status, headers, config) {
+                    .success(function(data, status, headers, config, statusText) {
                         console.log(data)
-                        if(data.username == username) {
-                            console.log('username exist!')
+                        if(data && data.username == username) {
+                            ngModel.$setValidity('checkUserName', false);
                         } else {
-                            console.log('username can use.')
+                            ngModel.$setValidity('checkUserName', true);
                         }
                     })
                     .error(function(data, status, headers, config) {
-                        console.log(data);
+                        ngModel.$setValidity('checkUserName', false);
                     });
-            });
+            };
         }
     }
 }]);
