@@ -13,7 +13,7 @@ var userSchema = new mongoose.Schema({
     update_time     : {type : Date, default: Date.now()},
     phone           : {type : String},
     age             : {type : Number}
-});
+},{ versionKey: false });
 
 var saveUser = function(document, callback) {
     var userModel = db.model('blog_user', userSchema);

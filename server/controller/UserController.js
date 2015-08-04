@@ -13,7 +13,6 @@ router.get('/page/list', function(req, res) {
 router.get('/checkusername', function(req, res) {
   var params = req.query;
   var columns = {username:1, create_time:1};
-  console.log("param:"+params.username);
   userDao.query(params, columns, function(data) {
     if(data.operate) {
       console.log(data.data);
@@ -21,7 +20,6 @@ router.get('/checkusername', function(req, res) {
     } else {
       console.log(data.msg);
     }
-
   });
 });
 

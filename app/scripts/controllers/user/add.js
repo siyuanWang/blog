@@ -6,6 +6,7 @@ app.controller('addArticleFormController', function($scope, $element, $http) {
     ];
     $scope.submit = function() {
         if($scope.userForm.$valid) {
+            $scope.fields.sex = $scope.fields.sex.value;
             $http.post('/user', $scope.fields)
                 .success(function(data, status, headers, config) {
                     alert(data);
@@ -87,16 +88,17 @@ app.directive('checkUserName', ['$http', function($http) {
                 if(ngModel.$isEmpty(modelValue))return true;
                 $http.get('/user/checkusername', {params: {username: username}})
                     .success(function(data, status, headers, config, statusText) {
-                        console.log(data)
                         if(data && data.username == username) {
                             ngModel.$setValidity('checkUserName', false);
                         } else {
                             ngModel.$setValidity('checkUserName', true);
                         }
+
                     })
                     .error(function(data, status, headers, config) {
                         ngModel.$setValidity('checkUserName', false);
                     });
+                scope.fields.username = username;
             };
         }
     }
