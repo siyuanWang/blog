@@ -1,6 +1,9 @@
 var app = angular.module('addArticleApp', []);
-app.controller('addArticleFormController', function($scope, $http) {
-
+app.controller('addArticleFormController', function($scope, $element, $http) {
+    $scope.sexItems = [
+        {name: '男', value: '0'},
+        {name: '女', value: '1'}
+    ];
     $scope.submit = function() {
         if($scope.userForm.$valid) {
             $http.post('/user', $scope.fields)
@@ -26,7 +29,10 @@ app.controller('addArticleFormController', function($scope, $http) {
         }
         $scope.fields = angular.copy($scope.master);
     };
-
+    $scope.clearInput = function(name) {
+        $element[0].querySelector('#'+name).focus();
+        $scope.fields[name] = '';
+    }
     $scope.reset();
 });
 
@@ -77,7 +83,6 @@ app.directive('checkUserName', ['$http', function($http) {
         restrict: 'A',
         require: 'ngModel',
         link: function(scope, elem, attrs, ngModel) {
-            console.log(ngModel)
             ngModel.$validators.checkUserName = function(modelValue, username) {
                 if(ngModel.$isEmpty(modelValue))return true;
                 $http.get('/user/checkusername', {params: {username: username}})
@@ -96,3 +101,21 @@ app.directive('checkUserName', ['$http', function($http) {
         }
     }
 }]);
+
+app.directive('checkPhoneNumber', function() {
+    var regExp = /^(86)?\d{11}$/;
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ngModel) {
+            ngModel.$validators.checkPhoneNumber = function(modelValue, viewValue) {
+                if(ngModel.$isEmpty(modelValue))return true;
+                if(regExp.test(viewValue)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+        }
+    }
+});
