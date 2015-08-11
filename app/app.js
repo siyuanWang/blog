@@ -1,11 +1,11 @@
 'use strict';
 define([], function() {
-    var app = angular.module('myApp',['ngRoute', 'routeResolverServices','ui.router','ui.bootstrap']);
+    var app = angular.module('myApp',['ngRoute', 'routeResolverServices','ngAnimate','ui.router','ui.bootstrap']);
     app.config(['$routeProvider', 'routeResolverProvider','$controllerProvider','$compileProvider',
             '$provide','$filterProvider',
 
             function($routeProvider, routeResolverProvider, $controllerProvider, $compileProvider,
-                     $provide, $filterProvider) {
+                     $provide, $filterProvider, $filter) {
                 console.log('app config.')
                 app.register = {
                     controller: $controllerProvider.register,
@@ -15,8 +15,9 @@ define([], function() {
                     service: $provide.service
                 };
                 var route = routeResolverProvider.route;
-                $routeProvider.when('/user', route.resolve('add', 'user', 'vm', false))
-                    .otherwise({ templateUrl: '/views/head.html' });
+                console.log(route.resolve('carousel', 'carousel', 'vm', false));
+                $routeProvider.when('/user', route.resolve('useradd', 'user', 'vm', false))
+                    .when('/index',route.resolve('carousel', 'carousel', 'vm', false));
             }]
     );
     app.controller('rootController', function($scope, $element, $attrs, $transclude){

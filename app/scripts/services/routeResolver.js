@@ -10,7 +10,7 @@ define([], function () {
 
         this.routeConfig = function () {
             var viewsDirectory = '/views/',
-                controllersDirectory = '/scripts/controllers/user/',
+                controllersDirectory = '/scripts/controllers/',
 
             setBaseDirectories = function (viewsDir, controllersDir) {
                 viewsDirectory = viewsDir;
@@ -40,12 +40,12 @@ define([], function () {
                 var routeDef = {};
                 var baseFileName = baseName.charAt(0).toLowerCase() + baseName.substr(1);
                 routeDef.templateUrl = routeConfig.getViewsDirectory() + path + '/' + baseFileName + '.html';
-                routeDef.controller = baseName + 'UserController';
+                routeDef.controller = baseName + 'Controller';
                 if (controllerAs) routeDef.controllerAs = controllerAs;
                 routeDef.secure = (secure) ? secure : false;
                 routeDef.resolve = {
                     load: ['$q', '$rootScope', function ($q, $rootScope) {
-                        var dependencies = [routeConfig.getControllersDirectory() + path + baseFileName + 'Controller.js'];
+                        var dependencies = [routeConfig.getControllersDirectory() + path + '/' +baseFileName + 'Controller.js'];
                         return resolveDependencies($q, $rootScope, dependencies);
                     }]
                 };
