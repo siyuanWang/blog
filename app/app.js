@@ -15,14 +15,12 @@ define([], function() {
                     service: $provide.service
                 };
                 var route = routeResolverProvider.route;
-                console.log(route.resolve('carousel', 'carousel', 'vm', false));
+
                 $routeProvider.when('/user', route.resolve('useradd', 'user', 'vm', false))
-                    .when('/index',route.resolve('carousel', 'carousel', 'vm', false));
+                    .when('/index',route.resolve('index', 'index', 'vm', false))
+                    .otherwise(route.resolve('carousel', 'carousel', 'vm', false));
             }]
     );
-    app.controller('rootController', function($scope, $element, $attrs, $transclude){
-        console.log(arguments);
-    });
 
     return app;
 });
