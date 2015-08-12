@@ -1,0 +1,56 @@
+<style rel="stylesheet">
+    .comment {
+        margin-bottom: 25px;
+        list-style: none;
+        clear:both;
+    }
+    .comment-main {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .comment-main .avatar {
+        position: relative;
+        float:left;
+    }
+    .avatar img {
+        width: 48px;
+        height: 48px;
+        margin-right:10px;
+    }
+</style>
+<div class="container-fluid" style="margin-top: 100px;" ng-controller="articleController">
+    <div class="row">
+        <div class="col-md-9">
+            <article>
+                <h2><a href="#" style="color:black">{{article.title}}</a></h2>
+                <p>{{article.time}}</p>
+                <p><strong ng-repeat="label in article.labels">{{label}}&nbsp;&nbsp;&nbsp;</strong></p>
+                <hr/>
+                <i style="text-indent: 2em">{{article.introduction}}</i>
+                <hr/>
+                <div ng-bind-html="article.content | sanitize"></div>
+            </article>
+
+            <article style="margin-top: 80px;">
+                <p><strong>评论</strong></p>
+                <hr style="height:2px;background-color: #9d9d9d"/>
+                <ul style="padding-left: 0px;">
+                    <li class="comment" ng-repeat="comment in article.comments">
+                        <article class="comment-main">
+                            <div class="avatar">
+                                <a href="">
+                                    <img src="{{comment.portrait}}">
+                                </a>
+                            </div>
+                            <div>
+                                <a>{{comment.userId}}</a>
+                                <div ng-bind-html="comment.content | sanitize"></div>
+                            </div>
+                        </article>
+                        <ul class="comment-children"></ul>
+                    </li>
+                </ul>
+            </article>
+        </div>
+    </div>
+</div>

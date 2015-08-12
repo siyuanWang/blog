@@ -18,9 +18,14 @@ define([], function() {
 
                 $routeProvider.when('/user', route.resolve('useradd', 'user', 'vm', false))
                     .when('/index',route.resolve('index', 'index', 'vm', false))
+                    .when('/article',route.resolve('article', 'article', 'vm', false))
                     .otherwise(route.resolve('carousel', 'carousel', 'vm', false));
             }]
     );
-
+    app.filter('sanitize',['$sce', function($sce) {
+        return function(htmlCode){
+            return $sce.trustAsHtml(htmlCode);
+        }
+    }]);
     return app;
 });

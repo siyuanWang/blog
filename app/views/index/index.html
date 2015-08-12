@@ -5,14 +5,14 @@
         </div>
     </slide>
 </carousel>
-<div class="container-fluid" style="margin-top: 100px;">
+<div class="container-fluid" style="margin-top: 100px;" ng-controller="indexController">
     <div class="row">
         <div class="col-md-9">
             <ul style="padding:0px;">
                 <li ng-repeat="article in articles" style="list-style: none">
                     <article>
                         <header>
-                            <h3><a href="">{{article.title}}</a></h3>
+                            <h3><a href="#article">{{article.title}}</a></h3>
                             <p>{{article.date}}</p>
                         </header>
                         <p>
@@ -20,7 +20,7 @@
                         </p>
                         <footer>
                             <p>
-                                <a href="">read me more...</a>
+                                <a href="#">read me more...</a>
                             </p>
                         </footer>
                     </article>
