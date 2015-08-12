@@ -2,12 +2,17 @@
     .comment {
         margin-bottom: 25px;
         list-style: none;
-        clear:both;
     }
     .comment-main {
         position: relative;
         margin-bottom: 20px;
+        padding-bottom: 5px;
     }
+    .comment-children {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
     .comment-main .avatar {
         position: relative;
         float:left;
@@ -17,8 +22,11 @@
         height: 48px;
         margin-right:10px;
     }
+    .comment-content {
+        float:left;
+    }
 </style>
-<div class="container-fluid" style="margin-top: 100px;" ng-controller="articleController">
+<div class="container-fluid" ng-controller="articleController">
     <div class="row">
         <div class="col-md-9">
             <article>
@@ -38,18 +46,50 @@
                     <li class="comment" ng-repeat="comment in article.comments">
                         <article class="comment-main">
                             <div class="avatar">
-                                <a href="">
+                                <a href="#">
                                     <img src="{{comment.portrait}}">
                                 </a>
                             </div>
                             <div>
-                                <a>{{comment.userId}}</a>
+                                <a href="#"><strong>{{comment.userId}}</strong></a>
                                 <div ng-bind-html="comment.content | sanitize"></div>
                             </div>
+                            <div style="position: absolute;bottom: 1px;right:0px;">
+                                <a href="#" title="赞" style="color:black"><i class="fa fa-thumbs-up"></i>(0)</a>
+                                <a href="#" title="踩" style="color:black"><i class="fa fa-thumbs-down"></i>(0)</a>
+                            </div>
+                            <div style="clear:both"></div>
                         </article>
-                        <ul class="comment-children"></ul>
+                        <ul class="comment-children">
+                            <li class="comment" ng-repeat="childComment in comment.children">
+                                <article class="comment-main">
+                                    <div class="avatar">
+                                        <a href="#">
+                                            <img src="{{childComment.portrait}}">
+                                        </a>
+                                    </div>
+                                    <div class="comment-content">
+                                        <a href="#"><strong>{{childComment.userId}}</strong></a>
+                                        <div ng-bind-html="childComment.content | sanitize"></div>
+                                    </div>
+                                    <div style="position: absolute;bottom: 1px;right:0px;">
+                                        <a href="#" title="赞" style="color:black"><i class="fa fa-thumbs-up"></i>(0)</a>
+                                        <a href="#" title="踩" style="color:black"><i class="fa fa-thumbs-down"></i>(0)</a>
+                                    </div>
+                                    <div style="clear:both"></div>
+                                </article>
+                                <ul class="comment-children"></ul>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
+            </article>
+            
+            <article>
+                <hr/>
+                <p><strong>你的答案:</strong></p>
+                <p><textarea name="" id="" cols="100" rows="3"></textarea></p>
+                <p><button class="btn btn-primary">回复</button></p>
             </article>
         </div>
     </div>
