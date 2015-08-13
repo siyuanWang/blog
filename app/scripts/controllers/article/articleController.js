@@ -1,6 +1,7 @@
 'use strict';
 define(['app'], function(app) {
     var controller = function($scope) {
+        $scope.htmlVariable = '<h2>xxx</h2>'
         $scope.article = {
             title: "Video: Building a Single-Page App with Angular, TypeScript, Azure Active Directory and Office 365 APIs",
             content: "" +

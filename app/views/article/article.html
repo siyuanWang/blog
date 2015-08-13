@@ -25,6 +25,32 @@
     .comment-content {
         float:left;
     }
+    .ta-editor {
+        height: 100px;
+        overflow: auto;
+        font-family: inherit;
+        font-size: 100%;
+    }
+    .ta-toolbar {
+        background-color: #F0F0F0;
+        padding: 10px 10px 5px;
+        margin-left: 0px; /* Override bootstrap */
+        border: 1px solid #EEE;
+    }
+
+    .ta-toolbar .btn-group {
+        margin-bottom: 5px;
+    }
+
+    .ta-editor, .white-box {
+        padding: 10px;
+        background-color: #FFF;
+        border: 1px solid #EEE;
+    }
+
+    textarea.ta-bind {
+        width: 100%;
+    }
 </style>
 <div class="container-fluid" ng-controller="articleController">
     <div class="row">
@@ -47,7 +73,7 @@
                         <article class="comment-main">
                             <div class="avatar">
                                 <a href="#">
-                                    <img src="{{comment.portrait}}">
+                                    <img class="img-rounded" src="{{comment.portrait}}">
                                 </a>
                             </div>
                             <div>
@@ -65,7 +91,7 @@
                                 <article class="comment-main">
                                     <div class="avatar">
                                         <a href="#">
-                                            <img src="{{childComment.portrait}}">
+                                            <img class="img-rounded" src="{{childComment.portrait}}">
                                         </a>
                                     </div>
                                     <div class="comment-content">
@@ -88,8 +114,8 @@
             <article>
                 <hr/>
                 <p><strong>你的答案:</strong></p>
-                <p><textarea name="" id="" cols="100" rows="3"></textarea></p>
-                <p><button class="btn btn-primary">回复</button></p>
+                <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
+                <p><button class="btn btn-default">回复</button></p>
             </article>
         </div>
     </div>
