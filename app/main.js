@@ -27,7 +27,8 @@ require(
     [
         'app',
         'scripts/directives/registerDirectives',
-        'scripts/services/routeResolver'
+        'scripts/services/routeResolver',
+        'scripts/services/articleService'
     ],
     function(app) {
         angular.bootstrap(document, ['myApp']);
