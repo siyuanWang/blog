@@ -19,6 +19,7 @@ define([], function() {
                 $routeProvider.when('/user', route.resolve('useradd', 'user', 'vm', false))
                     .when('/index',route.resolve('index', 'index', 'vm', false))
                     .when('/article',route.resolve('article', 'article', 'vm', false))
+                    .when('/article/add',route.resolve('articleadd', 'article', 'vm', false))
                     .otherwise(route.resolve('carousel', 'carousel', 'vm', false));
             }]
     );
