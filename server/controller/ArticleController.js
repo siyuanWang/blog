@@ -1,22 +1,27 @@
 var express = require('express');
 var articleDao = require('../dao/article/ArticleDao');
 var router = express.Router();
-
+/**
+ * 获得文章列表
+ */
 router.get('/', function(req, res) {
+  console.log("#################get#############");
   articleDao.query(function(result) {
     res.send(result);
   });
 
 });
-
-router.get('/page/list', function(req, res) {
-  res.render('views/article/list');
+/**
+ * 根据_id获得对应的文章
+ */
+router.get('/:id', function(req, res) {
+  articleDao.queryById(req.params.id, function(result) {
+    res.send(result);
+  });
 });
-
-router.get('/page/add', function(req, res) {
-  res.render('views/article/add');
-});
-
+/**
+ * 新增一个文章
+ */
 router.post('/', function(req, res) {
   var data = req.body;
   articleDao.save(data, function(data){

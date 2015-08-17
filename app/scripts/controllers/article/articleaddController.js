@@ -8,11 +8,22 @@ define(['app'], function(app) {
             content: ""
         };
 
+        $scope.init = {
+            types: [{
+                name: '前端',
+                id: '1'
+            }, {
+                name: "软件工程",
+                id: '2'
+            }]
+        }
+
         function show() {
             articleService.setArticle($scope.article);
         }
 
         $scope.submit = function() {
+            $scope.article.type = $scope.article.type.id;
             $http.post('/article', $scope.article)
                 .success(function(data, status, headers, config) {
                     alert(data);

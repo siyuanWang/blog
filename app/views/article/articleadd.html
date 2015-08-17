@@ -27,7 +27,7 @@
     }
 </style>
 
-<div class="container-fluid" ng-controller="articleaddController">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-9">
             <form novalidate ng-submit="submit()">
@@ -36,8 +36,8 @@
                     <input type="text" class="form-control" id="title" name="title" ng-model="article.title"/>
                 </div>
                 <div class="form-group">
-                    <label for="introduce">文章简介</label>
-                    <textarea type="text" class="form-control" cols="4" rows="4" id="introduce" name="introduce" ng-model="article.introduction" style="resize: none"></textarea>
+                    <label for="introduction">文章简介</label>
+                    <textarea type="text" class="form-control" cols="4" rows="4" id="introduction" name="introduction" ng-model="article.introduction" style="resize: none"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="labels">文章标签</label>
@@ -47,6 +47,10 @@
                        tooltip-trigger="focus"
                        tooltip-enable="!inputModel"
                     />
+                </div>
+                <div class="form-group">
+                    <label for="type">文章分类</label>
+                    <select name="type" id="type" ng-init="article.type = init.types[0]" ng-model="article.type" class="form-control" ng-options="type.name for type in init.types"></select>
                 </div>
                 <div class="form-group">
                     <label for="content">文章内容</label>

@@ -20,7 +20,7 @@
         }
     }
 </style>
-<div ng-controller="carouselController" style="height:200px;">
+<div style="height:200px;">
     <carousel interval="myInterval" no-wrap="noWrapSlides">
         <slide ng-repeat="slide in slides" active="slide.active">
             <img ng-src="{{slide.img}}" style="margin:auto;">
