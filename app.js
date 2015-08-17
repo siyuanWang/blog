@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use("/",express.static(path.join(__dirname, 'app')));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use('/user', userController);
-//app.use('/article', articleController);
+app.use('/article', articleController);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

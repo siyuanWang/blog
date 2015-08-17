@@ -4,18 +4,11 @@ var mongoose = require('mongoose');
 var articleSchema = new mongoose.Schema({
     content         : {type : String, default : '<div></div>'},
     title           : {type : String, default: '未命名标题'},
-    lables          : {type : [String], default: []},
+    labels          : {type : [String], default: []},
+    introduce       : {type:  String, default: '<div></div>'},
     share_num       : {type : Number, default: 0},
-    sex             : {type : Number},
     create_time     : {type : Date, default: Date.now()},
-    update_time     : {type : Date, default: Date.now()},
-    comment         : [{
-        commentId       : {type : Number, default: 0},
-        time            : {type : Date, default: Date.now()},
-        content         : {type : String, default : '<div></div>'},
-        parentId        : {type : Number},
-        order           : {type : Number, default: 0}
-    }]
+    update_time     : {type : Date, default: Date.now()}
 });
 
 var save = function(document, callback) {
