@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var userDao = require('../dao/user/UserDao');
 var router = express.Router();
