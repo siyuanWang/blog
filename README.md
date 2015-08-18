@@ -1,5 +1,5 @@
-这是一个用MEAN开发的博客系统
-如果不了解MEAN：请查看http://mean.io/
+这是一个用MEAN开发的博客系统。
+如果不了解MEAN：请查看http://mean.io/。
 本开源项目，依赖node、NPM、mongodb环境请自行到官网下载安装。
 
 MongoDB的配置在db.json中
