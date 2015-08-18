@@ -24,15 +24,16 @@ define(['app'], function(app) {
             return defer.promise;
         };
 
-        var getArticleById = function(callback) {
-            $http.get('/article/'+$routeParams.id)
+        var getArticleById = function(id) {
+            var defer = $q.defer();
+            $http.get('/article/'+id)
                 .success(function(data, status, headers, config) {
-                    console.log(data)
-                    callback(data);
+                    defer.resolve(data);
                 })
-                .error(function(data, status, headers, config) {
-                    alert(data);
+                .error(function(response, status, headers, config) {
+                    defer.reject(response);
                 });
+            return defer.promise;
         };
 
         return {
