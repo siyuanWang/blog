@@ -13,7 +13,7 @@
                     <article>
                         <header>
                             <h3><a href="#article/query/{{article._id}}">{{article.title}}</a></h3>
-                            <p>{{article.create_time}}</p>
+                            <p ng-bind="article.create_time"></p>
                         </header>
                         <p>
                             {{article.introduction}}

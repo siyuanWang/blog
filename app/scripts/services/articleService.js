@@ -12,20 +12,16 @@ define(['app'], function(app) {
             article = obj;
         };
 
-        var getArticles = function(callback) {
-            var deferred = $q.defer();
-            deferred.notify('即将问候');
+        var getArticles = function() {
+            var defer = $q.defer();
             $http.get('/article')
                 .success(function(data, status, headers, config) {
-                    deferred.resolve(data);
-                    callback(data);
+                    defer.resolve(data);
                 })
-                .error(function(data, status, headers, config) {
-                    deferred.reject(data);
-                    alert(data);
+                .error(function(response, status, headers, config) {
+                    defer.reject(response);
                 });
-
-            return deferred.promise;
+            return defer.promise;
         };
 
         var getArticleById = function(callback) {

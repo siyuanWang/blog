@@ -28,5 +28,6 @@ define([], function() {
             return $sce.trustAsHtml(htmlCode);
         }
     }]);
+
     return app;
 });
