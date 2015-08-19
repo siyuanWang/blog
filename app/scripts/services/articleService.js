@@ -11,7 +11,7 @@ define(['app'], function(app) {
         var setArticle = function(obj) {
             article = obj;
         };
-
+        //获得文章列表
         var getArticles = function() {
             var defer = $q.defer();
             $http.get('/article')
@@ -23,7 +23,7 @@ define(['app'], function(app) {
                 });
             return defer.promise;
         };
-
+        //根据ArticleId获得文章的详细资料
         var getArticleById = function(id) {
             var defer = $q.defer();
             $http.get('/article/'+id)

@@ -3,20 +3,23 @@ var express = require('express');
 var commentDao = require('../dao/CommentDao');
 var router = express.Router();
 /**
- * 获得文章列表
+ * 新增一个评论
  */
-router.get('/', function(req, res) {
-    console.log("#################get#############");
-    commentDao.query(function(result) {
-        res.send(result);
+router.post('/', function(req, res) {
+    var data = req.body;
+    commentDao.queryCountByArticleId(req.param.id, function(count) {
+        data.order = ++count;
+        commentDao.save(data, function(data){
+            res.send(data.msg);
+        })
     });
-
 });
+
 /**
- * 根据_id获得对应的文章
+ * 根据articelId获得对应文章的评论
  */
-router.get('/:id', function(req, res) {
-    commentDao.queryById(req.params.id, function(result) {
+router.get('/:articleId', function(req, res) {
+    commentDao.queryCountByArticleId(req.params.articleId, function(result) {
         res.send(result);
     });
 });

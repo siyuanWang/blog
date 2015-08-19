@@ -80,9 +80,32 @@ var queryById = function(id, callback) {
                 });
             }
         })
+    } else {
+        throw new Error('ID is undefined or null or ""');
+    }
+};
+/**
+ * 根据articleId 查询评论的总数
+ * @param articleId 评论所属的文章
+ * @param callback 回调函数
+ */
+var queryCountByArticleId = function(articleId, callback) {
+    var commentModel = db.model('blog_comment', commentSchema);
+    if(id) {
+        commentModel.count({articleId: articleId}, function(error, count) {
+            if(error) {
+                callback(count);
+            } else {
+                callback(0);
+                throw new Error(error);
+            }
+        })
+    } else {
+        throw new Error('ID is undefined or null or ""');
     }
 };
 
 module.exports.save = save;
 module.exports.query = query;
 module.exports.queryById = queryById;
+module.exports.queryCountByArticleId = queryCountByArticleId;

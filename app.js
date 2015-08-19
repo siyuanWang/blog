@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var userController = require('./server/controller/UserController');
 var articleController = require('./server/controller/ArticleController');
+var commentController = require('./server/controller/CommentController');
 
 var app = express();
 app.set('views', path.join(__dirname, 'app'));
@@ -23,6 +24,7 @@ app.use("/",express.static(path.join(__dirname, 'app')));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use('/user', userController);
 app.use('/article', articleController);
+app.use('/comment', commentController);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
