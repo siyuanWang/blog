@@ -1,7 +1,5 @@
-/**
- * Created by Administrator on 2015/7/22.
- */
-var db = require("../util/dbUtil");
+'use strict';
+var db = require("./util/dbUtil");
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({

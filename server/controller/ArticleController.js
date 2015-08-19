@@ -1,6 +1,6 @@
 'use strict';
 var express = require('express');
-var articleDao = require('../dao/article/ArticleDao');
+var articleDao = require('../dao/ArticleDao');
 var router = express.Router();
 /**
  * 获得文章列表

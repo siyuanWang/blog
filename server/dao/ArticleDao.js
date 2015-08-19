@@ -1,4 +1,5 @@
-var db = require("../util/dbUtil");
+'use strict';
+var db = require("./util/dbUtil");
 var mongoose = require('mongoose');
 
 var articleSchema = new mongoose.Schema({

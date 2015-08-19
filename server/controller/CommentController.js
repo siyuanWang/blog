@@ -1,13 +1,13 @@
 'use strict';
 var express = require('express');
-var articleDao = require('../dao/article/ArticleDao');
+var commentDao = require('../dao/CommentDao');
 var router = express.Router();
 /**
  * 获得文章列表
  */
 router.get('/', function(req, res) {
     console.log("#################get#############");
-    articleDao.query(function(result) {
+    commentDao.query(function(result) {
         res.send(result);
     });
 
@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
  * 根据_id获得对应的文章
  */
 router.get('/:id', function(req, res) {
-    articleDao.queryById(req.params.id, function(result) {
+    commentDao.queryById(req.params.id, function(result) {
         res.send(result);
     });
 });
@@ -25,7 +25,7 @@ router.get('/:id', function(req, res) {
  */
 router.post('/', function(req, res) {
     var data = req.body;
-    articleDao.save(data, function(data){
+    commentDao.save(data, function(data){
         res.send(data.msg);
     })
 });

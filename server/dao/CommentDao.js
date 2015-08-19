@@ -1,10 +1,11 @@
 'use strict';
-var db = require("util/dbUtil");
+var db = require("./util/dbUtil");
 var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
     content         : {type : String, default : '<div></div>'},
     parentId        : {type : String, default: ''},
+    parentOrder     : {type : Number},
     order           : {type : Number, default: 1},
     create_time     : {type : Date, default: Date.now()}
 });
@@ -35,13 +36,13 @@ var save = function(document, callback) {
  * @param fields {查询字段} {String} example: 'UserName Email UserType' 要查询空格分隔的三个字段
  */
 var query = function(callback, conditions, fields) {
-    var articleModel = db.model('blog_article', articleSchema);
+    var commentModel = db.model('blog_comment', commentSchema);
     var query;
     //如果有查询条件
     if(conditions) {
-        query = articleModel.find(conditions);
+        query = commentModel.find(conditions);
     } else {
-        query = articleModel.find({});
+        query = commentModel.find({});
     }
     //如果规定查询字段
     if(fields) {
@@ -64,9 +65,9 @@ var query = function(callback, conditions, fields) {
 };
 
 var queryById = function(id, callback) {
-    var articleModel = db.model('blog_article', articleSchema);
+    var commentModel = db.model('blog_comment', commentSchema);
     if(id) {
-        articleModel.findById(id, function(error, result) {
+        commentModel.findById(id, function(error, result) {
             if(error) {
                 callback({
                     operate: false,

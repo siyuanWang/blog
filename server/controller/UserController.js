@@ -1,6 +1,6 @@
 'use strict';
 var express = require('express');
-var userDao = require('../dao/user/UserDao');
+var userDao = require('../dao/UserDao');
 var router = express.Router();
 
 router.get('/page/add', function(req, res) {
