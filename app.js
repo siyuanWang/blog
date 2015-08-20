@@ -19,7 +19,7 @@ app.use(cookieParser());
 //app.use("/bower_components",express.static(path.join(__dirname, 'app/bower_components')));
 //app.use("/styles",express.static(path.join(__dirname, 'app/styles')));
 //app.use("/scripts",express.static(path.join(__dirname, 'app/scripts')));
-//app.use("/images",express.static(path.join(__dirname, 'app/images')));
+app.use("/images",express.static(path.join(__dirname, 'app/images')));
 app.use("/",express.static(path.join(__dirname, 'app')));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use('/user', userController);

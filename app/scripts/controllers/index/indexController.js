@@ -1,13 +1,6 @@
 'use strict';
 define(['app'], function(app) {
     var controller = function($scope, $timeout, articleService) {
-        $scope.myInterval = 5000;
-        $scope.noWrapSlides = false;
-        $scope.slides = [
-            {img: '/images/banner_1.jpg', text:''},
-            {img: '/images/banner_2.jpg', text:''},
-            {img: '/images/banner_3.jpg', text:''}
-        ];
         articleService.getArticles().then(function(data) {
             $scope.articles = data.data;
             console.log($scope.articles);
