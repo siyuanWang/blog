@@ -3,6 +3,7 @@ var db = require("./util/dbUtil");
 var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
+    articleId       : {type : String},
     content         : {type : String, default : '<div></div>'},
     parentId        : {type : String, default: ''},
     parentOrder     : {type : Number},
@@ -91,13 +92,13 @@ var queryById = function(id, callback) {
  */
 var queryCountByArticleId = function(articleId, callback) {
     var commentModel = db.model('blog_comment', commentSchema);
-    if(id) {
+    if(articleId) {
         commentModel.count({articleId: articleId}, function(error, count) {
             if(error) {
-                callback(count);
+                throw new Error(error);
             } else {
                 callback(0);
-                throw new Error(error);
+
             }
         })
     } else {

@@ -1,8 +1,8 @@
 'use strict';
 define(['app'], function(app) {
-    app.factory('commentService', ['$scope', '$http', '$q', function($scope, $http, $q) {
+    app.factory('commentService', ['$http', '$q', function($http, $q) {
 
-        var add = function(comment) {
+        var save = function(comment) {
             var defer = $q.defer();
             $http.post('/comment', comment)
                 .success(function(data, status, headers, config) {
@@ -28,7 +28,7 @@ define(['app'], function(app) {
             return defer.promise;
         };
 
-        var getCommentsByArticleId = function(articelId) {
+        var getCommentsByArticleId = function(articleId) {
             var defer = $q.defer();
             $http.get('/comment/'+articleId)
                 .success(function(data, status, headers, config) {
@@ -42,7 +42,7 @@ define(['app'], function(app) {
         };
 
         return {
-            add: add,
+            save: save,
             getComments: getComments,
             getCommentsByArticleId: getCommentsByArticleId
         }

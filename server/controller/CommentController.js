@@ -7,7 +7,7 @@ var router = express.Router();
  */
 router.post('/', function(req, res) {
     var data = req.body;
-    commentDao.queryCountByArticleId(req.param.id, function(count) {
+    commentDao.queryCountByArticleId(data.articleId, function(count) {
         data.order = ++count;
         commentDao.save(data, function(data){
             res.send(data.msg);
@@ -19,9 +19,10 @@ router.post('/', function(req, res) {
  * 根据articelId获得对应文章的评论
  */
 router.get('/:articleId', function(req, res) {
-    commentDao.queryCountByArticleId(req.params.articleId, function(result) {
+    commentDao.query(function(result) {
         res.send(result);
-    });
+        console.log(result)
+    }, {articleId: req.params.articleId});
 });
 /**
  * 新增一个文章

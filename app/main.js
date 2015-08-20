@@ -29,7 +29,8 @@ require(
         'app',
         'scripts/directives/registerDirectives',
         'scripts/services/routeResolver',
-        'scripts/services/articleService'
+        'scripts/services/articleService',
+        'scripts/services/commentService'
     ],
     function(app) {
         angular.bootstrap(document, ['myApp']);
