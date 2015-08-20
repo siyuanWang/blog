@@ -35,5 +35,5 @@ define(['app'], function(app) {
     };
 
     controller.inject = ['$scope', '$http', 'articleService'];
-    app.register.controller("articleaddController", controller);
+    app.register.controller("articleAddController", controller);
 });

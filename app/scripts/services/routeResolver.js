@@ -33,27 +33,32 @@ define([], function () {
         }();
 
         this.route = function (routeConfig) {
-
-            var resolve = function (baseName, path, controllerAs, secure) {
+            /**
+             *
+             * @param controllerName controller 名
+             * @param templateName views/{path}/{templateName} HTML（模板名）名
+             * @param path scripts/controllers/{path} 目录名
+             * @param controllerAs
+             * @param secure
+             * @returns {{}}
+             */
+            var resolve = function (controllerName, templateName, path, controllerAs, secure) {
                 if (!path) path = '';
-
                 var routeDef = {};
-                var baseFileName = baseName.charAt(0).toLowerCase() + baseName.substr(1);
-                routeDef.templateUrl = routeConfig.getViewsDirectory() + path + '/' + baseFileName + '.html';
-                routeDef.controller = baseName + 'Controller';
+                routeDef.templateUrl = routeConfig.getViewsDirectory() + path + '/' + templateName + '.html';
+                routeDef.controller = controllerName;
                 if (controllerAs) routeDef.controllerAs = controllerAs;
                 routeDef.secure = (secure) ? secure : false;
                 routeDef.resolve = {
                     load: ['$q', '$rootScope', function ($q, $rootScope) {
-                        var dependencies = [routeConfig.getControllersDirectory() + path + '/' +baseFileName + 'Controller.js'];
+                        var dependencies = [routeConfig.getControllersDirectory() + path + '/' +routeDef.controller + '.js'];
                         return resolveDependencies($q, $rootScope, dependencies);
                     }]
                 };
-
                 return routeDef;
-            },
+            };
 
-            resolveDependencies = function ($q, $rootScope, dependencies) {
+            var resolveDependencies = function ($q, $rootScope, dependencies) {
                 var defer = $q.defer();
                 require(dependencies, function () {
                     defer.resolve();

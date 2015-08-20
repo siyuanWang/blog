@@ -6,8 +6,6 @@
     <file url="file://$PROJECT_DIR$/app/scripts/services/routeResolver.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/db.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/server/dao/article/ArticleDao.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/server/dao/user/UserDao.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/dao/util/dbUtil.js" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

@@ -38,7 +38,7 @@ define(['app'], function(app) {
         $scope.reset();
     };
     addUserController.$inject = injectParams;
-    app.register.controller('useraddController', addUserController);
+    app.register.controller('userAddController', addUserController);
 
     //app.directive('equals', function() {
     //    return {

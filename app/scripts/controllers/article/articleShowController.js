@@ -7,5 +7,5 @@ define(['app'], function(app) {
         })
     };
     controller.inject = ['$scope', '$http', '$routeParams', 'articleService'];
-    app.register.controller("articleController", controller);
+    app.register.controller("articleShowController", controller);
 });

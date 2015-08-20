@@ -16,11 +16,11 @@ define([], function() {
                 };
                 var route = routeResolverProvider.route;
 
-                $routeProvider.when('/user', route.resolve('useradd', 'user', 'vm', false))
-                    .when('/index',route.resolve('index', 'index', 'vm', false))
-                    .when('/article/query/:id',route.resolve('article', 'article', 'vm', false))
-                    .when('/article/add',route.resolve('articleadd', 'article', 'vm', false))
-                    .otherwise(route.resolve('carousel', 'carousel', 'vm', false));
+                $routeProvider.when('/user', route.resolve('userAddController','userAdd','user','vm', false))
+                    .when('/index',route.resolve('indexController','index','index', 'vm', false))
+                    .when('/article/query/:id',route.resolve('articleShowController', 'show', 'article', 'vm', false))
+                    .when('/article/add',route.resolve('articleAddController','add','article', 'vm', false))
+                    .otherwise(route.resolve('carouselController','carousel','carousel', 'vm', false));
             }]
     );
     app.filter('sanitize',['$sce', function($sce) {
