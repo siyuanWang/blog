@@ -34,7 +34,7 @@ define([], function() {
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
             console.log('Current route name: ' + $location.path());
             var path = $location.path();//获得当前路由地址
-    
+
         })
     }]);
 
