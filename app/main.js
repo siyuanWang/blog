@@ -17,10 +17,6 @@ requirejs.config({
             deps:['angular'],
             exports:'angular-route'
         }
-        //request deps 是怎么管理依赖的
-        //app: {
-        //    deps:['angular', 'angular-route', 'jquery', 'bootstrap-js']
-        //}
     }
 });
 

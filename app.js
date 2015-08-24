@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 var userController = require('./server/controller/UserController');
 var articleController = require('./server/controller/ArticleController');
 var commentController = require('./server/controller/CommentController');
+var loginController = require('./server/controller/LoginController');
 
 var app = express();
 app.set('views', path.join(__dirname, 'app'));
@@ -16,15 +17,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use("/bower_components",express.static(path.join(__dirname, 'app/bower_components')));
-//app.use("/styles",express.static(path.join(__dirname, 'app/styles')));
-//app.use("/scripts",express.static(path.join(__dirname, 'app/scripts')));
 app.use("/images",express.static(path.join(__dirname, 'app/images')));
+//默认node去寻找app下的index.html，作为app入口页面
 app.use("/",express.static(path.join(__dirname, 'app')));
+app.use("/login", express.static(path.join(__dirname, 'app/views/index/login.html')));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use('/user', userController);
 app.use('/article', articleController);
 app.use('/comment', commentController);
+app.use('/checkLogin', loginController);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

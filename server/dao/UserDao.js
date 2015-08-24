@@ -18,13 +18,11 @@ var saveUser = function(document, callback) {
     var userEntity = new userModel(document);
     userEntity.save(function(error) {
         if(error) {
-            console.log(error);
             callback({
                 operate: false,
                 msg: error
             })
         } else {
-            console.log('saved OK!');
             callback({
                 operate: true,
                 msg: "操作成功"
@@ -38,13 +36,11 @@ var query = function(params, columns, callback) {
     var query = userModel.find(params).select(columns);
     query.exec(function(error, result) {
         if(error) {
-            console.log(error);
             callback({
                 operate: false,
                 msg: error
             })
         } else {
-            console.log(result)
             callback({
                 operate: true,
                 data: result
