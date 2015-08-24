@@ -4,6 +4,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
 var userController = require('./server/controller/UserController');
 var articleController = require('./server/controller/ArticleController');
 var commentController = require('./server/controller/CommentController');
@@ -22,6 +25,26 @@ app.use("/images",express.static(path.join(__dirname, 'app/images')));
 app.use("/",express.static(path.join(__dirname, 'app')));
 app.use("/login", express.static(path.join(__dirname, 'app/views/index/login.html')));
 app.use(favicon(__dirname + '/favicon.ico'));
+
+app.use(session({
+  secret: 'foo',
+  store: new MongoStore({
+    // Basic usage
+    host: '127.0.0.1', // Default, optional
+    port: 27017, // Default, optional
+    db: 'wsy', // Required
+    collection: 'sessions',
+    // Basic authentication (optional)
+    username: 'wangsiyuan',
+    password: '123456',
+
+    // Advanced options (optional)
+    autoReconnect: true, // Default
+    w: 1, // Default,
+    ssl: false // Default
+  })
+}));
+
 app.use('/user', userController);
 app.use('/article', articleController);
 app.use('/comment', commentController);

@@ -9,8 +9,9 @@ router.post('/', function(req, res) {
     userDao.query({username: params.username}, columns, function(data) {
         if(data.operate) {
             var userInfo = data.data;
-            console.log(userInfo)
+            console.log(req.session)
             if(userInfo.length > 0 && userInfo[0].password === params.password) {
+                req.session.userInfo = userInfo;
                 res.send({check: true});
             } else {
                 res.send({check: false, msg: "密码或用户名错误"});
