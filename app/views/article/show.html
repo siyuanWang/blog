@@ -57,8 +57,8 @@
         <div class="row">
             <div class="col-md-9">
                 <article>
-                    <h2><a href="#" style="color:black">{{article.title}}</a></h2>
-                    <p>{{article.create_time}}</p>
+                    <h2><a href="#article/query/{{article._id}}" style="color:black">{{article.title}}</a></h2>
+                    <p>{{article.create_time | date:'yyyy-MM-dd HH:mm:ss'}}</p>
                     <p><strong ng-repeat="label in article.labels">{{label}}&nbsp;&nbsp;&nbsp;</strong></p>
                     <hr/>
                     <i style="text-indent: 2em">{{article.introduction}}</i>
@@ -78,7 +78,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="#"><strong>user1</strong></a>
+                                    <a href="#"><strong>user1</strong></a>&nbsp;&nbsp;<span>{{comment.create_time | date:'yyyy-MM-dd HH:mm:ss'}}</span>
                                     <div ng-bind-html="comment.content | sanitize"></div>
                                 </div>
                                 <div style="position: absolute;bottom: 1px;right:0px;">

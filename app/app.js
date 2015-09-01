@@ -17,10 +17,11 @@ define([], function() {
                 };
                 var route = routeResolverProvider.route;
 
-                $routeProvider.when('/user', route.resolve('userAddController','userAdd','user','vm', false))
+                $routeProvider
                     .when('/index',route.resolve('indexController','index','index', 'vm', false))
+                    .when('/about',route.resolve('aboutMeController', 'aboutme', '', 'vm', false))
+                    .when('/article',route.resolve('articleController', 'articlelist', 'article', 'vm', false))
                     .when('/article/query/:id',route.resolve('articleShowController', 'show', 'article', 'vm', false))
-                    .when('/article/add',route.resolve('articleAddController','add','article', 'vm', false))
                     .otherwise(route.resolve('indexController','index','index', 'vm', false));
             }]
     );

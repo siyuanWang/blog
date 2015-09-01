@@ -1,0 +1,29 @@
+<div class="container" style="margin-top:100px;margin-bottom: 50px;">
+    <div class="container-fluid" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <ul style="padding: 0px;">
+                    <li ng-repeat="article in articles" style="margin-bottom: 8px;border-bottom: 1px solid #ddd;list-style: none">
+                        <article>
+                            <header>
+                                <h3 style="margin-bottom: 30px"><a href="#article/query/{{article._id}}">{{article.title}}</a></h3>
+                                <p ng-bind="article.create_time | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                                <p ng-repeat="label in article.labels">
+                                    <span class="label label-default">{{label}}</span>&nbsp;&nbsp;
+                                </p>
+                            </header>
+                            <p>
+                                {{article.introduction}}
+                            </p>
+                            <footer>
+                                <p>
+                                    <a href="#article/query/{{article._id}}" style="color: dodgerblue">Read More...</a>
+                                </p>
+                            </footer>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
