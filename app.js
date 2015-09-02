@@ -75,7 +75,7 @@ app.use(function(err, req, res, next) {
 });
 
 var http = require('http');
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 var server = http.createServer(app);
 
