@@ -7,7 +7,9 @@ requirejs.config({
         'angular': 'bower_components/angular/angular',
         'angular-route': 'bower_components/angular-route/angular-route',
         'bootstrap-js':'bower_components/bootstrap/dist/js/bootstrap.min',
-        'library': 'bower_components'
+        'library': 'bower_components',
+        'changyan': 'http://changyan.sohu.com/upload/changyan.js',
+        'articleService': 'scripts/services/articleService'
     },
     shim:{
         'angular':{
@@ -19,15 +21,3 @@ requirejs.config({
         }
     }
 });
-
-require(
-    [
-        'app',
-        'scripts/directives/registerDirectives',
-        'scripts/services/routeResolver',
-        'scripts/services/articleService',
-        'scripts/services/commentService'
-    ],
-    function(app) {
-        angular.bootstrap(document, ['myApp']);
-    });

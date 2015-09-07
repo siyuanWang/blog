@@ -5,15 +5,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
 
-var userController = require('./server/controller/UserController');
 var articleController = require('./server/controller/ArticleController');
-var commentController = require('./server/controller/CommentController');
-var loginController = require('./server/controller/LoginController');
 
 var app = express();
+//__dirname 是工程的绝对路径：比如f:\workspace\webstormworkspace\blog
+//应用视图层目录
 app.set('views', path.join(__dirname, 'app'));
+//应用模板引擎
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use(logger('dev'));
@@ -23,32 +22,15 @@ app.use(cookieParser());
 app.use("/images",express.static(path.join(__dirname, 'app/images')));
 //默认node去寻找app下的index.html，作为app入口页面
 app.use("/",express.static(path.join(__dirname, 'app')));
-app.use("/login", express.static(path.join(__dirname, 'app/views/index/login.html')));
 app.use(favicon(__dirname + '/favicon.ico'));
 
-app.use(session({
-  secret: 'foo',
-  store: new MongoStore({
-    // Basic usage
-    host: '123.56.94.37', // Default, optional
-    port: 27017, // Default, optional
-    db: 'blog', // Required
-    collection: 'sessions',
-    // Basic authentication (optional)
-    //username: 'wangsiyuan',
-    //password: '123456',
+app.get('/index', function(req, res, next) {
+  console.log('fuck')
+  res.render('index',{title: 'title'});
+});
 
-    // Advanced options (optional)
-    autoReconnect: true, // Default
-    w: 1, // Default,
-    ssl: false // Default
-  })
-}));
 
-app.use('/user', userController);
 app.use('/article', articleController);
-app.use('/comment', commentController);
-app.use('/checkLogin', loginController);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

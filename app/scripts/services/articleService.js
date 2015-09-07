@@ -1,6 +1,6 @@
 'use strict';
-define(['app'], function(app) {
-    app.factory('articleService', ['$http','$q', function($http, $q) {
+define(function() {
+   var service = ['$http','$q', function($http, $q) {
         var article = {
             title: "",
             introduction: "",
@@ -41,5 +41,7 @@ define(['app'], function(app) {
             getArticles: getArticles,
             getArticleById: getArticleById
         }
-    }]);
+    }];
+
+    return service;
 });
