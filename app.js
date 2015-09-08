@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 var session = require('express-session');
 
 var articleController = require('./server/controller/ArticleController');
+var pageRouter = require('./server/controller/PageRouter');
 
 var app = express();
 //__dirname 是工程的绝对路径：比如f:\workspace\webstormworkspace\blog
@@ -24,37 +25,43 @@ app.use("/images",express.static(path.join(__dirname, 'app/images')));
 app.use("/",express.static(path.join(__dirname, 'app')));
 app.use(favicon(__dirname + '/favicon.ico'));
 
+//首页
 app.get('/index', function(req, res, next) {
-  console.log('fuck')
+  console.log('render index page.')
   res.render('index',{title: 'title'});
 });
 
+app.get('/page', function(req, res, next) {
+  console.log('render index.')
+  res.render('./views/article/articlelist',{title: 'title'});
+});
 
 app.use('/article', articleController);
+app.use('/category', pageRouter);
 
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+//app.use(function(req, res, next) {
+//  var err = new Error('Not Found');
+//  err.status = 404;
+//  next(err);
+//});
+//
+//if (app.get('env') === 'development') {
+//  app.use(function(err, req, res, next) {
+//    res.status(err.status || 500);
+//    res.render('error', {
+//      message: err.message,
+//      error: err
+//    });
+//  });
+//}
+//
+//app.use(function(err, req, res, next) {
+//  res.status(err.status || 500);
+//  res.render('error', {
+//    message: err.message,
+//    error: {}
+//  });
+//});
 
 var http = require('http');
 var port = normalizePort(process.env.PORT || '3001');
