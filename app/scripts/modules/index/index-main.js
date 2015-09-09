@@ -3,10 +3,7 @@
 requirejs.config({
     baseUrl: '/',
     paths: {
-        'jquery': 'bower_components/jquery/dist/jquery.min',
         'angular': 'bower_components/angular/angular',
-        'bootstrap':'bower_components/bootstrap/dist/js/bootstrap.min',
-        'changyan': 'http://changyan.sohu.com/upload/changyan',
         'articleService': 'scripts/services/articleService',
         'indexController': 'scripts/modules/index/index-controller'
     },
@@ -24,8 +21,7 @@ require(
     [
         'angular',
         'articleService',
-        'indexController',
-        'changyan'
+        'indexController'
     ],
     function() {
         //jquery需要在angular之后加载，否则报错

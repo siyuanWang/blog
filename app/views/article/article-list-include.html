@@ -1,0 +1,20 @@
+<ul style="padding: 0px;">
+    <li ng-repeat="article in articles" style="margin-bottom: 25px;list-style: none">
+        <article style="border:1px solid #ddd;padding: 25px;background-color: #FFFFFF;box-shadow: 0 0 6px rgba(0,0,0,.2);position:relative;">
+            <header>
+                <h3 style="margin-bottom: 30px;text-align: center;"><a href="/category/blog/{{article._id}}" style="color:#FF6611;" ng-bind="article.title"></a></h3>
+                <div style="position: absolute;top: 15px;left:-35px;background: rgba(204,204,204,.4);width:85px;height:28px;text-align: center;font-size:10px;line-height: 28px;font-weight: bold;color:#222222" ng-bind="article.create_time | date:'yyyy-MM-dd'"></div>
+                <p>
+                    <span class="label label-default"><i ng-repeat="label in article.labels" ng-bind="label"></i></span>&nbsp;&nbsp;
+                </p>
+                <hr/>
+            </header>
+            <p style="border-left: 4px solid #FF6611;padding-left: 5px;" ng-bind="article.introduction"></p>
+            <footer style="margin-top: 30px;">
+                <p>
+                    <a href="/category/blog/{{article._id}}" style="color:#FF9900;font-weight: bold;float:right;margin-right:10px;">Read More...</a>
+                </p>
+            </footer>
+        </article>
+    </li>
+</ul>

@@ -2,7 +2,7 @@
 <html lang="en" ng-app="articleModule">
 <head>
     <meta charset="utf-8">
-    <title>My AngularJS App</title>
+    <title>Crowley</title>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <style rel="stylesheet">
         html, body {
@@ -113,11 +113,11 @@
                     <script type="text/javascript">
                         window._articleData = '<%=articleId%>';
                     </script>
-                    <h2><a href="/category/blog/{{article._id}}" style="color:black">{{article.title}}</a></h2>
-                    <p>{{article.create_time | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-                    <p><strong ng-repeat="label in article.labels">{{label}}&nbsp;&nbsp;&nbsp;</strong></p>
+                    <h2><a href="/category/blog/{{article._id}}" style="color:black" ng-bind="article.title"></a></h2>
+                    <p ng-bind="article.create_time | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                    <p><strong ng-repeat="label in article.labels" ng-bind="label">&nbsp;&nbsp;&nbsp;</strong></p>
                     <hr/>
-                    <i style="text-indent: 2em">{{article.introduction}}</i>
+                    <i style="text-indent: 2em" ng-bind="article.introduction"></i>
                     <hr/>
                     <div ng-bind-html="article.content | sanitize"></div>
                 </article>
