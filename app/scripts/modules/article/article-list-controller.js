@@ -4,6 +4,7 @@ define([], function() {
         function($scope, articleService, $window) {
             articleService.getArticles().then(function(data) {
                 $scope.articles = data.data;
+                console.log($scope.articles)
             });
         }];
     return controller;

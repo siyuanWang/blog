@@ -115,7 +115,7 @@
                     </script>
                     <h2><a href="/category/blog/{{article._id}}" style="color:black" ng-bind="article.title"></a></h2>
                     <p ng-bind="article.create_time | date:'yyyy-MM-dd HH:mm:ss'"></p>
-                    <p><strong ng-repeat="label in article.labels" ng-bind="label">&nbsp;&nbsp;&nbsp;</strong></p>
+                    <p><span class="label label-default" ng-repeat="label in article.labels" style="margin-right: 5px;"><i ng-bind="label"></i></span></p>
                     <hr/>
                     <i style="text-indent: 2em" ng-bind="article.introduction"></i>
                     <hr/>
