@@ -4,7 +4,6 @@ requirejs.config({
     baseUrl: '/',
     paths: {
         'angular': 'bower_components/angular/angular',
-        'changyan': 'http://changyan.sohu.com/upload/changyan',
         'articleService': 'scripts/services/articleService',
         'articleController': 'scripts/modules/article/article-controller'
     },
@@ -22,8 +21,7 @@ require(
     [
         'angular',
         'articleService',
-        'articleController',
-        'changyan'
+        'articleController'
     ],
     function() {
         var angular = arguments[0],articleService = arguments[1],articleController = arguments[2];
