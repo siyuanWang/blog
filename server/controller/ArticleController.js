@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
   articleDao.query(function(result) {
     res.send(result);
-  });
+  },{draft: 2});
 
 });
 /**
