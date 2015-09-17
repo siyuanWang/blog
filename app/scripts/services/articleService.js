@@ -1,6 +1,8 @@
 'use strict';
 define(function() {
    var service = ['$http','$q', function($http, $q) {
+       var skip = 0;
+
         var article = {
             title: "",
             introduction: "",
@@ -13,6 +15,7 @@ define(function() {
         };
         //获得文章列表
         var getArticles = function() {
+            console.log("skip:"+ ++skip);
             var defer = $q.defer();
             $http.get('/article')
                 .success(function(data, status, headers, config) {

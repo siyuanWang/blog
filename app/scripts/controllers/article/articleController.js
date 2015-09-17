@@ -5,6 +5,7 @@ define(['app'], function(app) {
             $scope.articles = data.data;
         });
     };
+
     articleController.inject = ['$scope', '$timeout','articleService'];
     app.register.controller('articleController', articleController);
 });

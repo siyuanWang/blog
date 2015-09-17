@@ -5,6 +5,12 @@ define([], function() {
             articleService.getArticles().then(function(data) {
                 $scope.articles = data.data;
             });
+            $scope.moreArticle = function() {
+                articleService.getArticles().then(function(data) {
+                    $scope.articles = data.data;
+                });
+            }
+
             $scope.labels = ['javaScript','HTML','Css','Java','AngularJs','bootstrap','AMD','响应式','Unit Test','前端'];
 
         }];
