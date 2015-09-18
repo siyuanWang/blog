@@ -17,5 +17,8 @@
             </footer>
         </article>
     </li>
-    <li style="text-align: center;"><a href="javascript:void(0)" ng-click="moreArticle()">查看更多</a></li>
+    <li style="text-align: center;margin-bottom: 25px;list-style: none;">
+        <a href="javascript:void(0)" ng-click="moreArticle()" ng-show="!noMoreArticle">查看更多</a>
+        <span ng-show="noMoreArticle">没有更多文章</span>
+    </li>
 </ul>

@@ -52,7 +52,7 @@ var query = function(callback, conditions, fields, pageObject) {
     if(fields) {
         query.select(fields);
     }
-
+    console.log(JSON.stringify(pageObject));
     if(pageObject) {
         query.limit(pageObject.limit);
         query.skip(pageObject.skip);

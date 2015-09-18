@@ -6,10 +6,11 @@ var router = express.Router();
  * 获得文章列表
  */
 router.get('/', function(req, res) {
-  var data = req.body;
+  var data = req.query;
+  console.log(JSON.stringify(data));
   articleDao.query(function(result) {
     res.send(result);
-  },{draft: 2}, undefined, {limit:10, skip: data.skip || 0});
+  },{draft: 2}, undefined, {limit: data.limit || 10, skip: data.skip || 0});
 
 });
 /**

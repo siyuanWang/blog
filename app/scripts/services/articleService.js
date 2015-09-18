@@ -1,8 +1,6 @@
 'use strict';
 define(function() {
    var service = ['$http','$q', function($http, $q) {
-       var skip = 0;
-
         var article = {
             title: "",
             introduction: "",
@@ -14,10 +12,12 @@ define(function() {
             article = obj;
         };
         //获得文章列表
-        var getArticles = function() {
-            console.log("skip:"+ ++skip);
+        var getArticles = function(limit, skip) {
             var defer = $q.defer();
-            $http.get('/article')
+            if(!limit && !skip) throw new Error('query articles no limit or skip param.');
+            var pageObject = {skip: skip, limit: limit};
+            console.log(pageObject)
+            $http.get('/article',{params: pageObject})
                 .success(function(data, status, headers, config) {
                     defer.resolve(data);
                 })
