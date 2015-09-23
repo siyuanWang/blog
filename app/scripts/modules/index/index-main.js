@@ -5,6 +5,7 @@ requirejs.config({
     paths: {
         'angular': 'bower_components/angular/angular',
         'articleService': 'scripts/services/articleService',
+        'labelService': 'scripts/services/labelService',
         'indexController': 'scripts/modules/index/index-controller'
     },
     shim:{
@@ -21,18 +22,17 @@ require(
     [
         'angular',
         'articleService',
+        'labelService',
         'indexController'
     ],
     function() {
-        //jquery需要在angular之后加载，否则报错
-        //require(['bootstrap'], function() {
-        //    alert('loaded bootstrap');
-        //})
-        var angular = arguments[0],articleService = arguments[1],indexController = arguments[2];
+        var angular = arguments[0],articleService = arguments[1],labelService = arguments[2],
+            indexController = arguments[3];
         var module = angular.module('indexModule',[]);
         //注册service
         module.config(['$provide','$controllerProvider', function($provide,$controllerProvider) {
             $provide.factory('articleService', articleService);
+            $provide.factory('labelService', labelService);
             $controllerProvider.register('indexController', indexController);
         }]);
     }

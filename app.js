@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 var session = require('express-session');
 
 var articleController = require('./server/controller/ArticleController');
+var labelController = require('./server/controller/LabelController');
 var pageRouter = require('./server/controller/PageRouter');
 
 var app = express();
@@ -37,6 +38,7 @@ app.get('/page', function(req, res, next) {
 });
 
 app.use('/article', articleController);
+app.use('/label', labelController);
 app.use('/category', pageRouter);
 
 //app.use(function(req, res, next) {

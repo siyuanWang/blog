@@ -1,7 +1,7 @@
 'use strict';
 define([], function() {
-    var controller = ['$scope', 'articleService','$window',
-        function($scope, articleService, $window) {
+    var controller = ['$scope', 'articleService','labelService','$window',
+        function($scope, articleService, labelService, $window) {
             $scope.limit = 10;
             $scope.skip = 0;
             $scope.noMoreArticle = false;
@@ -21,7 +21,15 @@ define([], function() {
 
                 });
             };
-            $scope.labels = ['javaScript','HTML','Css','Java','AngularJs','bootstrap','AMD','响应式','Unit Test','前端'];
+            labelService.getLabels({page: 1, rows:0, count: 15}).then(function(result) {
+                if(result.status == 1) {
+                    $scope.labels = result.result.list;
+                } else {
+                    alert("后台错误");
+                }
+            }, function(msg) {
+                alert(msg);
+            })
         }];
     return controller;
 });
