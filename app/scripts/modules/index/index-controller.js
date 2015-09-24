@@ -21,7 +21,7 @@ define([], function() {
 
                 });
             };
-            labelService.getLabels({page: 1, rows:0, count: 15}).then(function(result) {
+            labelService.getLabels({page: 1, rows:0, count: 100}).then(function(result) {
                 if(result.status == 1) {
                     $scope.labels = result.result.list;
                 } else {

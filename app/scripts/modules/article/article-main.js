@@ -5,7 +5,9 @@ requirejs.config({
     paths: {
         'angular': 'bower_components/angular/angular',
         'articleService': 'scripts/services/articleService',
-        'articleController': 'scripts/modules/article/article-controller'
+        'articleController': 'scripts/modules/article/article-controller',
+        'directive': 'scripts/directive/directive',
+        'labelService': 'scripts/services/labelService'
     },
     shim:{
         'angular':{
@@ -21,14 +23,18 @@ require(
     [
         'angular',
         'articleService',
-        'articleController'
+        'articleController',
+        'directive',
+        'labelService'
     ],
     function() {
-        var angular = arguments[0],articleService = arguments[1],articleController = arguments[2];
+        var angular = arguments[0],articleService = arguments[1],articleController = arguments[2],
+            directive = arguments[3],labelService = arguments[4];
         var module = angular.module('articleModule',[]);
         //注册service
         module.config(['$provide','$controllerProvider', function($provide,$controllerProvider) {
             $provide.factory('articleService', articleService);
+            $provide.factory('labelService', labelService);
             $controllerProvider.register('articleController', articleController);
         }]);
 
@@ -37,5 +43,6 @@ require(
                 return $sce.trustAsHtml(htmlCode);
             }
         }]);
+        module.directive('blogLabel', directive.blogLabelDirective);
     }
 );

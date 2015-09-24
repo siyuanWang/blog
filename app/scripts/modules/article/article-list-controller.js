@@ -7,7 +7,6 @@ define([], function() {
 
             articleService.getArticles($scope.limit, $scope.skip).then(function(data) {
                 $scope.articles = data.data;
-                console.log($scope.articles)
             });
         }];
     return controller;

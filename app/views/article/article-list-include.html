@@ -5,7 +5,7 @@
                 <h3 style="margin-bottom: 30px;text-align: center;"><a href="/category/blog/{{article._id}}" style="color:#FF6611;" ng-bind="article.title"></a></h3>
                 <div style="position: absolute;top: 15px;left:-35px;background: rgba(204,204,204,.4);width:85px;height:28px;text-align: center;font-size:10px;line-height: 28px;font-weight: bold;color:#222222" ng-bind="article.create_time | date:'yyyy-MM-dd'"></div>
                 <p>
-                    <span class="label label-default" ng-repeat="label in article.labels" style="margin-right: 5px;"><i ng-bind="label"></i></span>
+                    <span class="label label-default" ng-repeat="label in article.labels track by $index" style="margin-right: 5px;"><i ng-bind="label"></i></span>
                 </p>
                 <hr/>
             </header>
