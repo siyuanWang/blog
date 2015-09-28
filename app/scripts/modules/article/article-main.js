@@ -3,11 +3,11 @@
 requirejs.config({
     baseUrl: '/',
     paths: {
-        'angular': 'bower_components/angular/angular.min',
-        'articleService': 'scripts/services/articleService',
-        'articleController': 'scripts/modules/article/article-controller',
-        'directive': 'scripts/directive/directive',
-        'labelService': 'scripts/services/labelService'
+        'angular': '/app/bower_components/angular/angular.min',
+        'articleService': '/app/scripts/services/articleService',
+        'articleController': '/app/scripts/modules/article/article-controller',
+        'directive': '/app/scripts/directive/directive',
+        'labelService': '/app/scripts/services/labelService'
     },
     shim:{
         'angular':{

@@ -2,8 +2,9 @@
 var Q = require('q');
 var labelDao = require('../dao/LabelDao');
 var articleDao = require('../dao/ArticleDao');
-var log4js = require('log4js');
+var log4js = require('../util/log4jsUtil');
 var logger = log4js.getLogger();
+logger.setLevel('INFO');
 /**
  * 分页查询所有的标签，每页20个
  * @param pagination pagination<page, rows, count> 当前页面，总记录数，每页显示数量

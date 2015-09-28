@@ -1,0 +1,13 @@
+{
+  "appenders": [
+    {"type": "console"},
+    {
+      "type": "file",
+      "filename": "/project/logs/blog/log_file.log",
+      "maxLogSize": 20480,
+      "backups": 3,
+      "category": "system-log"
+    }
+  ],
+  "replaceConsole": true
+}

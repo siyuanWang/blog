@@ -3,16 +3,13 @@
 requirejs.config({
     baseUrl: '/',
     paths: {
-        'angular': 'bower_components/angular/angular',
-        'articleService': 'scripts/services/articleService',
-        'articleListController': 'scripts/modules/article/article-list-controller'
+        'angular': '/app/bower_components/angular/angular',
+        'articleService': '/app/scripts/services/articleService',
+        'articleListController': '/app/scripts/modules/article/article-list-controller'
     },
     shim:{
         'angular':{
             exports:'angular'
-        },
-        "bootstrap": {
-            deps: ['jquery']
         }
     }
 });
