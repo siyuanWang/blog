@@ -28,6 +28,10 @@ app.get('/', function(req, res, next) {
   res.render('index',{title: 'title'});
 });
 
+app.get('/about', function(req, res) {
+  res.render('views/aboutme',{});
+});
+
 app.use('/article', articleController);
 app.use('/label', labelController);
 app.use('/category', pageRouter);

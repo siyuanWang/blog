@@ -1,26 +1,88 @@
-<div class="container" style="margin-top:100px;margin-bottom: 50px;">
-    <div class="container-fluid" style="margin-top: 10px;">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="/images/mine.jpg" alt="个人头像" class="img-thumbnail" style="width:140px;height:140px;">
-                        </div>
-                        <div class="col-md-9">
-                            <h3>Crowley</h3>
-                            <div>
-                                <p>Hi Everybody:</p>
-                                <p>
-                                    我是一名web开发者，崇尚技术改变世界！这个博客，是我技术分享门户，涉及了前端开发、服务端开发、
-                                    软件工程等。希望大家互相学习，争取每周会总结一篇博客，欢迎拍砖。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!DOCTYPE html>
+<html lang="en" ng-app="indexModule">
+<head>
+    <meta charset="utf-8">
+    <title>Crowley</title>
+    <link href="/app/bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link  href="/app/bower_components/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+    <style>
+        html, body {
+            font-family: '微软雅黑';
+            background-color: #FFFFEE;
+        }
 
+        a{
+            color: black;
+        }
+
+        a:hover {
+            color: #333333;
+        }
+
+        .container.main {
+        }
+        .white-nav {
+            background-color: white;
+            padding-top:10px;
+            height:75px;
+        }
+        .white-nav a {
+            color: black;
+            font-size: 16px;
+        }
+
+        .social {
+            font-size: 4em;
+            cursor: pointer;
+        }
+
+        /*full width container*/
+        @media (max-width: 767px) {
+            .block {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+        }
+
+        .masthead {
+            background-image: url('/app/images/background2.jpg');
+            color: white;
+            height: 550px;
+            margin-top: 75px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<% include head.html %>
+<div style="margin-top:75px;">
+
+    <div class="container" style="margin-top:100px;margin-bottom: 50px;" ng-controller="indexController">
+        <div class="container-fluid" style="margin-top: 40px;">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>Crowley</h3>
+                    <div>
+                        <p style="text-indent: 2em">Hi Everybody:</p>
+                        <p style="text-indent: 2em">
+                            我是一名web开发者，崇尚技术改变世界！这个博客，是我技术分享门户，涉及了前端开发、服务端开发、
+                            软件工程等。希望大家互相学习，争取每周会总结一篇博客，欢迎拍砖。
+                        </p>
+                    </div>
+                    <hr/>
+                    <div id="SOHUCS"></div>
+                    <script type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js"></script>
+                    <script type="text/javascript">
+                        window.changyan.api.config({
+                            appid: 'cyrXKIcmH',
+                            conf: 'prod_ff4be030258e259cd974b71f4546c833'
+                        });
+                    </script>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<% include foot.html %>
+</body>
+

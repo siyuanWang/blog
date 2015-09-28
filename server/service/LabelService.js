@@ -2,7 +2,7 @@
 var Q = require('q');
 var labelDao = require('../dao/LabelDao');
 var articleDao = require('../dao/ArticleDao');
-var log4js = require('../util/log4jsUtil');
+var log4js = require('../util/Log4jsUtil');
 var logger = log4js.getLogger();
 logger.setLevel('INFO');
 /**
