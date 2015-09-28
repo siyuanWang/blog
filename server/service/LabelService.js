@@ -3,7 +3,7 @@ var Q = require('q');
 var labelDao = require('../dao/LabelDao');
 var articleDao = require('../dao/ArticleDao');
 var log4js = require('../util/Log4jsUtil');
-var logger = log4js.getLogger();
+var logger = log4js.getLogger('system-log');
 logger.setLevel('INFO');
 /**
  * 分页查询所有的标签，每页20个

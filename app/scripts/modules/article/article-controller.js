@@ -5,7 +5,7 @@ define([], function() {
 
             $scope.articleId = $window._articleData;
             articleService.getArticleById($scope.articleId).then(function(data) {
-                $scope.article = data.data;
+                $scope.article = data.result;
             });
 
             labelService.getLabels({page: 1, rows:0, count: 100}).then(function(result) {

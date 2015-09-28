@@ -1,7 +1,7 @@
 'use strict';
 var Q = require('q');
 var log4js = require('../util/Log4jsUtil');
-var logger = log4js.getLogger();
+var logger = log4js.getLogger('system-log');
 var articleDao = require('../dao/ArticleDao');
 logger.setLevel('INFO');
 /**
@@ -13,7 +13,7 @@ function queryList(pagination) {
     var skip = (page-1)*count;
     var limit = count;
     var condition = {draft: 2};
-    logger.debug("queryList: condition:{},pagination: {}", condition, pagination);
+    logger.info("queryList: condition:%s,pagination: %s", JSON.stringify(condition), JSON.stringify(pagination));
     var promise = articleDao.query(condition, undefined, {limit: limit, skip: skip});
     promise.then(function(result) {
         defer.resolve(result);

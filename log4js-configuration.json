@@ -2,12 +2,19 @@
   "appenders": [
     {"type": "console"},
     {
-      "type": "file",
-      "filename": "/project/logs/blog/log_file.log",
+      "type": "DateFile",
+      "filename": "/project/logs/blog/",
+      "pattern": "log-yyyy-MM-dd.txt",
       "maxLogSize": 20480,
-      "backups": 3,
-      "category": "system-log"
+      "absolute": true,
+      "alwaysIncludePattern": true,
+      "category": "system-log",
+      "layout": {
+        "type": "pattern",
+        "pattern": "[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] [%c]-%m%n"
+      }
     }
   ],
-  "replaceConsole": true
+  "replaceConsole": true,
+  "levels":{ "logInfo": "DEBUG"}
 }
