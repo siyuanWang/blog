@@ -5,7 +5,7 @@ define([], function() {
             $scope.limit = 10;
             $scope.skip = 0;
 
-            articleService.getArticles($scope.limit, $scope.skip).then(function(data) {
+            articleService.getArticles({page: 1, rows:0, count: 15}).then(function(data) {
                 $scope.articles = data.data;
             });
         }];

@@ -12,12 +12,9 @@ define(function() {
             article = obj;
         };
         //获得文章列表
-        var getArticles = function(limit, skip) {
+        var getArticles = function(pagination) {
             var defer = $q.defer();
-            if(!limit && !skip) throw new Error('query articles no limit or skip param.');
-            var pageObject = {skip: skip, limit: limit};
-            console.log(pageObject)
-            $http.get('/article',{params: pageObject})
+            $http.get('/article',{params: pagination})
                 .success(function(data, status, headers, config) {
                     defer.resolve(data);
                 })

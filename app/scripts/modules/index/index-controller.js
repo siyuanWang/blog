@@ -2,20 +2,21 @@
 define([], function() {
     var controller = ['$scope', 'articleService','labelService','$window',
         function($scope, articleService, labelService, $window) {
-            $scope.limit = 10;
-            $scope.skip = 0;
             $scope.noMoreArticle = false;
-            articleService.getArticles($scope.limit, $scope.skip).then(function(data) {
-                $scope.articles = data.data;
+            $scope.page = 1;
+            $scope.rows = 0;
+            $scope.count = 15;
+
+            articleService.getArticles({page: $scope.page, rows:$scope.rows, count: $scope.count}).then(function(data) {
+                $scope.articles = data.result;
             });
             $scope.moreArticle = function() {
-                $scope.skip += 5;
-                articleService.getArticles($scope.limit, $scope.skip).then(function(data) {
-                    console.log(data.data)
-                    if(data.data.length > 0) {//查询有数据
-                        $scope.articles.concat(data.data);
+                $scope.page++;
+                articleService.getArticles({page: $scope.page, rows:$scope.rows, count: $scope.count}).then(function(data) {
+                    if(data.result.length > 0) {//查询有数据
+                        $scope.articles.concat(data.result);
                     } else {//没有更多的文章
-                        $scope.skip -= 5;
+                        $scope.page--;
                         $scope.noMoreArticle = true;
                     }
 
