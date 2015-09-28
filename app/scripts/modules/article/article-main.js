@@ -3,7 +3,7 @@
 requirejs.config({
     baseUrl: '/',
     paths: {
-        'angular': 'bower_components/angular/angular',
+        'angular': 'bower_components/angular/angular.min',
         'articleService': 'scripts/services/articleService',
         'articleController': 'scripts/modules/article/article-controller',
         'directive': 'scripts/directive/directive',
@@ -12,9 +12,6 @@ requirejs.config({
     shim:{
         'angular':{
             exports:'angular'
-        },
-        "bootstrap": {
-            deps: ['jquery']
         }
     }
 });
