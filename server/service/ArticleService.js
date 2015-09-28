@@ -1,6 +1,6 @@
 'use strict';
 var Q = require('q');
-var log4js = require('../util/log4jsUtil');
+var log4js = require('../util/Log4jsUtil');
 var logger = log4js.getLogger();
 var articleDao = require('../dao/ArticleDao');
 logger.setLevel('INFO');
