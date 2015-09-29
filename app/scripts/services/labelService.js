@@ -15,8 +15,21 @@ define(function() {
             return defer.promise;
         };
 
+        var queryArticlesByLabelId = function(labelId, pagination) {
+            var defer = $q.defer();
+            $http.get('/label/'+labelId, {params: pagination})
+                .success(function(data, status, headers, config) {
+                    defer.resolve(data);
+                })
+                .error(function(response, status, headers, config) {
+                    defer.reject(response);
+                });
+            return defer.promise;
+        };
+
         return {
-            getLabels: getLabels
+            getLabels: getLabels,
+            queryArticlesByLabelId: queryArticlesByLabelId
         }
     }];
 

@@ -41,7 +41,7 @@ function queryList(pagination) {
  * @param labelId
  * @param pagination pagination<page, rows, count> 当前页面，总记录数，每页显示数量
  */
-function queryArticleByLabelId(labelId, pagination) {
+function queryArticlesByLabelId(labelId, pagination) {
     var defer = Q.defer();
     var page = parseInt(pagination.page, 10), rows = parseInt(pagination.rows,10), count = parseInt(pagination.count, 10);
     var skip = (page-1)*count;
@@ -50,7 +50,7 @@ function queryArticleByLabelId(labelId, pagination) {
     labelDao.query({_id: labelId}, undefined).then(function(result) {
         var articles = result[0].articles;
         logger.debug("articles:{}", articles);
-        articleDao.query({_id:{$in: articles}}, "_id title", {skip: skip, limit: limit}).then(function(result){
+        articleDao.query({_id:{$in: articles}}, "_id title labels introduction create_time", {skip: skip, limit: limit}).then(function(result){
             logger.debug(result);
             callbackData.count = count;
             callbackData.page = page;
@@ -68,6 +68,31 @@ function queryArticleByLabelId(labelId, pagination) {
     });
     return defer.promise;
 }
+/**
+ * 根据labelName查询出label对象，对象唯一。
+ * @param labelName
+ * @returns {*}
+ */
+function queryByLabelName(labelName) {
+    if(!labelName) {
+        throw new Error('labelName is ');
+    }
+    var defer = Q.defer();
+    var promise = labelDao.query({label_name: labelName}, '_id label_name');
+    promise.then(function(result) {
+        if(result.length != 1) {
+            logger.error('DATA ERROR: %d tag not unique or exist.', labelName);
+            defer.reject(new Error('DATA ERROR'));
+        } else {
+            defer.resolve(result[0]);
+        }
+
+    }, function(error) {
+        defer.reject(error);
+    });
+    return defer.promise;
+}
 
 module.exports.queryList = queryList;
-module.exports.queryArticleByLabelId = queryArticleByLabelId;
+module.exports.queryArticleByLabelId = queryArticlesByLabelId;
+module.exports.queryByLabelName = queryByLabelName;
