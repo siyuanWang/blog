@@ -7,7 +7,9 @@ requirejs.config({
         'bootstrap-treeview': '/app/bower_components/bootstrap-treeview/dist/bootstrap-treeview.min',
         'angular': '/app/bower_components/angular/angular.min',
         'articleService': '/app/scripts/services/articleService',
-        'articleListController': '/app/scripts/modules/article/article-list-controller'
+        'articleListController': '/app/scripts/modules/article/article-list-controller',
+        'labelService': '/app/scripts/services/labelService',
+        'directive': '/app/scripts/directive/directive'
     },
     shim:{
         'angular':{
@@ -24,52 +26,60 @@ require(
         'angular',
         'articleService',
         'articleListController',
-        'bootstrap-treeview'
+        'bootstrap-treeview',
+        'directive',
+        'labelService'
     ],
     function() {
         var tree = [
             {
-                text: "Parent 1",
+                text: "前端",
+                state: {
+                    checked: true,
+                    expanded: true
+                },
                 nodes: [
-                    {
-                        text: "Child 1",
-                        nodes: [
-                            {
-                                text: "Grandchild1"
-                            },
-                            {
-                                text: "Grandchild2"
-                            }
-                        ]
-                    },
-                    {
-                        text: "Child 2"
-                    }
+                    {text: "AngularJS", state: {selected: true}},
+                    {text: "Bootstrap"},
+                    {text: "Css"}
                 ]
             },
             {
-                text: "Parent 2"
+                text: "服务端",
+                state: {
+                    expanded: false
+                },
+                nodes: [
+                    {text: "Java"},
+                    {text: "Node"},
+                    {text: "Python"}
+                ]
             },
             {
-                text: "Parent 3"
-            },
-            {
-                text: "Parent 4"
-            },
-            {
-                text: "Parent 5"
+                text: "数据库",
+                state: {
+                    expanded: false
+                },
+                nodes:[
+                    {text: "NoSQL"},
+                    {text: "传统数据库"}
+                ]
             }
         ];
         $('#tree').treeview({
             data: tree,         // data is not optional
-            levels: 5
+            levels: 99
         });
-        var angular = arguments[0],articleService = arguments[1],articleListController = arguments[2];
+        var angular = arguments[0],articleService = arguments[1],articleListController = arguments[2],
+            directive = arguments[4], labelService = arguments[5];
         var module = angular.module('articleListModule',[]);
         //注册service
         module.config(['$provide','$controllerProvider', function($provide,$controllerProvider) {
             $provide.factory('articleService', articleService);
+            $provide.factory('labelService', labelService);
             $controllerProvider.register('articleListController', articleListController);
         }]);
+
+        module.directive('blogLabel', directive.blogLabelDirective);
     }
 );

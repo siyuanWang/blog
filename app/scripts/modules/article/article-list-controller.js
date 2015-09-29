@@ -1,7 +1,7 @@
 'use strict';
 define([], function() {
-    var controller = ['$scope', 'articleService','$window',
-        function($scope, articleService, $window) {
+    var controller = ['$scope', 'articleService','$window','labelService',
+        function($scope, articleService, $window, labelService) {
             $scope.noMoreArticle = false;
             $scope.page = 1;
             $scope.rows = 0;
@@ -23,6 +23,17 @@ define([], function() {
 
                 });
             };
+
+            labelService.getLabels({page: 1, rows:0, count: 100}).then(function(result) {
+                if(result.status == 1) {
+                    $scope.labels = result.result.list;
+                } else {
+                    alert("后台错误");
+                }
+            }, function(msg) {
+                alert(msg);
+            })
+
         }];
     return controller;
 });
