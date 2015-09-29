@@ -50,7 +50,8 @@ function queryArticlesByLabelId(labelId, pagination) {
     labelDao.query({_id: labelId}, undefined).then(function(result) {
         var articles = result[0].articles;
         logger.debug("articles:{}", articles);
-        articleDao.query({_id:{$in: articles}}, "_id title labels introduction create_time", {skip: skip, limit: limit}).then(function(result){
+        //查询标签下的文章（已发布）
+        articleDao.query({_id:{$in: articles},draft: 2}, "_id title labels introduction create_time", {skip: skip, limit: limit}).then(function(result){
             logger.debug(result);
             callbackData.count = count;
             callbackData.page = page;

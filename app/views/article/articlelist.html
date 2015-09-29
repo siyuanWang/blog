@@ -17,24 +17,6 @@
         a:hover {
             color: #333333;
         }
-
-        .container.main {
-        }
-        .white-nav {
-            background-color: white;
-            padding-top:10px;
-            height:75px;
-        }
-        .white-nav a {
-            color: black;
-            font-size: 16px;
-        }
-
-        .social {
-            font-size: 4em;
-            cursor: pointer;
-        }
-
         /*full width container*/
         @media (max-width: 767px) {
             .block {
@@ -54,10 +36,13 @@
     <div class="container" style="margin-top:100px;margin-bottom: 50px;" ng-controller="articleListController">
         <div class="container-fluid" style="margin-top: 10px;">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-3">
+                    <div id="tree"></div>
+                </div>
+                <div class="col-md-7">
                     <% include article-list-include.html %>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
 
                 </div>
             </div>
