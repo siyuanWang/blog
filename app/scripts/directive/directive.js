@@ -9,5 +9,55 @@ define([], function() {
         }
     };
 
+    directive.classifyDirective = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            link: function (scope, el, attrs) {
+                require(['bootstrap-treeview'], function() {
+                    var tree = [
+                        {
+                            text: "前端",
+                            state: {
+                                checked: true,
+                                expanded: true
+                            },
+                            nodes: [
+                                {text: "AngularJS", state: {selected: true}},
+                                {text: "Bootstrap"},
+                                {text: "Css"}
+                            ]
+                        },
+                        {
+                            text: "服务端",
+                            state: {
+                                expanded: false
+                            },
+                            nodes: [
+                                {text: "Java"},
+                                {text: "Node"},
+                                {text: "Python"}
+                            ]
+                        },
+                        {
+                            text: "数据库",
+                            state: {
+                                expanded: false
+                            },
+                            nodes:[
+                                {text: "NoSQL"},
+                                {text: "传统数据库"}
+                            ]
+                        }
+                    ];
+                    $('#tree').treeview({
+                        data: tree,         // data is not optional
+                        levels: 99
+                    });
+                });
+            }
+        }
+    };
+
     return directive;
 });

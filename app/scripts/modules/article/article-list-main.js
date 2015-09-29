@@ -26,52 +26,13 @@ require(
         'angular',
         'articleService',
         'articleListController',
-        'bootstrap-treeview',
         'directive',
         'labelService'
     ],
     function() {
-        var tree = [
-            {
-                text: "前端",
-                state: {
-                    checked: true,
-                    expanded: true
-                },
-                nodes: [
-                    {text: "AngularJS", state: {selected: true}},
-                    {text: "Bootstrap"},
-                    {text: "Css"}
-                ]
-            },
-            {
-                text: "服务端",
-                state: {
-                    expanded: false
-                },
-                nodes: [
-                    {text: "Java"},
-                    {text: "Node"},
-                    {text: "Python"}
-                ]
-            },
-            {
-                text: "数据库",
-                state: {
-                    expanded: false
-                },
-                nodes:[
-                    {text: "NoSQL"},
-                    {text: "传统数据库"}
-                ]
-            }
-        ];
-        $('#tree').treeview({
-            data: tree,         // data is not optional
-            levels: 99
-        });
+
         var angular = arguments[0],articleService = arguments[1],articleListController = arguments[2],
-            directive = arguments[4], labelService = arguments[5];
+            directive = arguments[3], labelService = arguments[4];
         var module = angular.module('articleListModule',[]);
         //注册service
         module.config(['$provide','$controllerProvider', function($provide,$controllerProvider) {
@@ -81,5 +42,6 @@ require(
         }]);
 
         module.directive('blogLabel', directive.blogLabelDirective);
+        module.directive('classifyDirective', directive.classifyDirective);
     }
 );
